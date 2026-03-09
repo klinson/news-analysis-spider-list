@@ -17,7 +17,7 @@
   "author": "GlobalWatch",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^21.11.0",
+    "puppeteer": "^23.11.0",
     "axios": "^1.6.7",
     "dotenv": "^16.4.5",
     "winston": "^3.11.0"
