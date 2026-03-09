@@ -1,6 +1,21 @@
 # GlobalWatch 列表爬虫 (List Crawler)
 
+[![List Crawler](https://github.com/your-username/globalwatch-list-crawler/actions/workflows/list-crawler.yml/badge.svg)](https://github.com/your-username/globalwatch-list-crawler/actions/workflows/list-crawler.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js 20](https://img.shields.io/badge/node-20-green.svg)](https://nodejs.org/)
+
 基于 GitHub Actions + Puppeteer 的列表页采集服务,负责发现新闻文章 URL。
+
+## 🚀 一键部署到 GitHub Actions
+
+1. **Fork 本仓库** - 点击右上角 Fork 按钮
+2. **配置 Secrets** - 在 `Settings` → `Secrets and variables` → `Actions` 中添加:
+   - `API_BASE_URL`: 你的服务端 API 地址
+   - `API_TOKEN`: API 认证令牌
+3. **启用 Actions** - 进入 `Actions` 标签页,点击 "I understand my workflows, go ahead and enable them"
+4. **手动触发测试** - 选择 `List Crawler` workflow → 点击 `Run workflow`
+
+✅ 部署完成！爬虫将每小时自动运行一次。
 
 ## 🎯 功能定位
 
@@ -142,17 +157,25 @@ node main.js
 }
 ```
 
-## 🤖 GitHub Actions 部署
+## 🤖 GitHub Actions 配置
 
-### 配置 Secrets
+### 定时运行配置
 
-在仓库设置中添加:
-- `API_BASE_URL`
-- `API_TOKEN`
+默认每小时运行一次,可在 `.github/workflows/list-crawler.yml` 中修改:
 
-### 定时运行
+```yaml
+on:
+  schedule:
+    - cron: '0 * * * *'  # 每小时
+  workflow_dispatch:  # 支持手动触发
+```
 
-默认每小时运行一次,可在 `.github/workflows/list-crawler.yml` 中修改。
+### 查看运行日志
+
+1. 进入仓库的 `Actions` 页面
+2. 点击具体的运行记录
+3. 查看每个步骤的日志
+4. 下载 Artifacts 中的日志文件(保留 7 天)
 
 ## 📝 API 接口
 
